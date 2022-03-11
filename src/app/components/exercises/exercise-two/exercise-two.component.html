@@ -1,0 +1,53 @@
+<div>
+  <div class="mb-2">
+
+  </div>
+
+  <div class="mb-5">
+    <h5 class="text-primary border-bottom border-primary">Exercise 2.</h5>
+    <p>Another very common task is to collect user input to perform actions based on the input. In this task, we will
+    be creating input fields which convert amounts between different units. The following steps will guide you through
+    one implementation of this.</p>
+    <ol>
+      <li>
+        Add an <code>input</code> element below with an argument <code>type="number"</code> (to create a numerical input cell),
+        a <code>select</code> element, and a couple of <code>option</code> elements inside the <code>select</code>. The options
+        will be empty by default, so put some text inside each <code>option</code> element so the dropdown will show these.
+      </li>
+      <li>
+        Add two-way binding to the <code>input</code> and <code>select</code> elements using <code>[(ngModel)]</code>.
+        You'll need to create variables (we will refer to them as <code>valueOneNumber</code> and <code>valueOneUnit</code>) in the <code>.ts</code> file to bind to the values of these inputs. You can check
+        this is correct by using interpolation to display the variables you have created, using <code [innerHTML]="'{{ myVarName }}'"></code>.
+      </li>
+      <li>
+        The variable <code>lengthUnitsKeys</code> is an array of strings, each being a different unit. Use an <code>*ngFor</code>
+        directive to replace the current <code>option</code> elements with the given units.
+      </li>
+      <li>
+        We now have a functioning input pair, for a number and a unit! Create a second pair of inputs, including separate
+        variables, but still using <code>lengthUnitsKeys</code> as the list of units.
+      </li>
+    </ol>
+    All that remains is to set up the interaction between the input pairs. We will do this by defining functions to
+    convert the first value to the second and vice versa. These will be called when either values' number or unit
+    fields are changed. We will call the variables <code>valueTwoNumber</code> and <code>valueTwoUnit</code> for consistency.<br/>
+    <ol start="5">
+      <li>
+        Define a function which sets <code>valueTwoNumber</code> to the value of <br/>
+        <code>valueOneNumber * lengthUnits[valueOneUnit] / lengthUnits[valueTwoUnit]</code>. Then bind this function to the <code>(change)</code>
+        event in the first <code>input</code> and <code>select</code> elements. The second number should now update when the
+        first number or unit change.
+      </li>
+      <li>
+        Repeat the previous step, but updating the first number based on the second number and units.
+      </li>
+    </ol>
+    <!-- Your code here -->
+
+
+
+  </div>
+
+  <div class="mb-5">&nbsp;</div>
+
+</div>

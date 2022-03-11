@@ -1,0 +1,33 @@
+<div>
+  <div class="border-bottom border-dark mb-4">
+    <h1 class="text-dark">Exercises</h1>
+  </div>
+  <nav ngbNav #nav="ngbNav" class="nav-tabs" [activeId]="route.fragment | async">
+    <ng-container [ngbNavItem]="'one'">
+      <a ngbNavLink routerLink="." [fragment]="'one'">Exercise One</a>
+      <ng-template ngbNavContent>
+        <app-exercise-one></app-exercise-one>
+      </ng-template>
+    </ng-container>
+    <ng-container [ngbNavItem]="'one-solution'">
+      <a ngbNavLink routerLink="." [fragment]="'one-solution'">Solution One</a>
+      <ng-template ngbNavContent>
+        <app-exercise-one-solution></app-exercise-one-solution>
+      </ng-template>
+    </ng-container>
+    <ng-container [ngbNavItem]="'two'">
+      <a ngbNavLink routerLink="." [fragment]="'two'">Exercise Two</a>
+      <ng-template ngbNavContent>
+        <app-exercise-two></app-exercise-two>
+      </ng-template>
+    </ng-container>
+    <ng-container [ngbNavItem]="'two-solution'">
+      <a ngbNavLink routerLink="." [fragment]="'two-solution'">Solution Two</a>
+      <ng-template ngbNavContent>
+        <app-exercise-two-solution></app-exercise-two-solution>
+      </ng-template>
+    </ng-container>
+  </nav>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</div>

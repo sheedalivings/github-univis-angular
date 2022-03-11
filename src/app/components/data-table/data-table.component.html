@@ -1,0 +1,19 @@
+<table class="table table-bordered table-striped table-hover" [class.c-glow]="enableGlow">
+  <thead>
+  <tr class="text-light bg-secondary">
+    <th *ngIf="rowIndexing">#</th>
+    <th *ngFor="let property of properties">{{property | startCase}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let row of data; let i = index">
+    <td *ngIf="rowIndexing">{{i}}</td>
+    <td *ngFor="let property of properties">
+      <ng-container *ngIf="isLink(row[property])"><a [href]="row[property].url"
+                                                     target="_blank">{{ row[property].text || row[property].url }}</a>
+      </ng-container>
+      <ng-container *ngIf="!isLink(row[property])">{{row[property] || ''}}</ng-container>
+    </td>
+  </tr>
+  </tbody>
+</table>

@@ -1,0 +1,8 @@
+<div [ngSwitch]="type" [class.c-glow]="enableGlow">
+  <img *ngSwitchCase="CoinType.None" src="assets/coin-blank.svg">
+  <img (click)="onClick()" *ngSwitchCase="CoinType.Yellow" class="c-pointer" src="assets/coin-yellow.svg">
+  <img (click)="onClick()" *ngSwitchCase="CoinType.Blue" class="c-pointer" src="assets/coin-blue.svg">
+  <img (click)="onClick()" *ngSwitchCase="CoinType.LogoYellow" class="c-pointer" src="assets/logo-yellow.svg" width="40px">
+  <img *ngSwitchCase="CoinType.LogoBlue" src="assets/logo-blue.svg" width="40px">
+  <img (click)="onClick()" *ngSwitchCase="CoinType.Silver" class="c-pointer" src="assets/coin-silver.svg">
+</div>

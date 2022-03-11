@@ -1,0 +1,26 @@
+<div>
+  <div class="mb-2">
+
+  </div>
+
+  <div class="mb-5">
+    <h5 class="text-primary border-bottom border-primary">Exercise 2.</h5>
+
+    <input type="number" [(ngModel)]="valueOneNumber" (change)="onValueOneChange()">
+    <select [(ngModel)]="valueOneUnit" (change)="onValueOneChange()">
+      <option *ngFor="let unit of lengthUnitsKeys">{{unit}}</option>
+    </select>
+
+    =
+
+    <input type="number" [(ngModel)]="valueTwoNumber" (change)="onValueTwoChange()">
+    <select [(ngModel)]="valueTwoUnit" (change)="onValueTwoChange()">
+      <option *ngFor="let unit of lengthUnitsKeys">{{unit}}</option>
+    </select>
+
+  </div>
+  <div class="mb-5">&nbsp;</div>
+
+
+
+</div>

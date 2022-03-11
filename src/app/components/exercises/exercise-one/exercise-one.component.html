@@ -1,0 +1,71 @@
+<div>
+  <div class="mb-2">
+
+  </div>
+
+  <div class="mb-5">
+    <h5 class="text-primary border-bottom border-primary">Exercise 1.1.</h5>
+    <p>Let's start by using some of the HTML and CSS we are familiar with, to check that it works as we expect.</p>
+    <p><b>Create a basic table below with some dummy data.</b></p>
+    <!-- Your code here -->
+
+
+  </div>
+
+  <div class="mb-5">
+    <h5 class="text-primary border-bottom border-primary">Exercise 1.2.</h5>
+    <p>Let's try use some structural directives. A list of strings <code>imageDescriptions</code> is defined in the TypeScript file for this component, so let's try show it here.</p>
+    <ol>
+      <li>First try using interpolation directly on <code>imageDescriptions</code> (e.g. <code [innerHTML]="'{{ someVariableName }}'"></code>)</li>
+      <li>Then try using the <code>json</code> pipe with the interpolation (e.g. <code [innerHTML]="'{{ someVariableName | pipeName }}'"></code>)</li>
+      <li>Finally, try creating a paragraph element for each item, by using a <code>&lt;p&gt;</code> tag with the structural directive <code>*ngFor="let dummyItemName of listName"</code></li>
+    </ol>
+    <!-- Your code here -->
+
+
+  </div>
+
+  <div class="mb-5">
+    <h5 class="text-primary border-bottom border-primary">Exercise 1.3.</h5>
+    <p>Now let's see how to use components. Recall that we can insert components using their selector as the name of a HTML tag.</p>
+    <p><b>Add a Coin component below.</b></p>
+    <p>Hint: Check <code>coin.component.ts</code> to find the selector for the Coin component.</p>
+    <!-- Your code here -->
+
+
+  </div>
+
+  <div class="mb-5">
+    <h5 class="text-primary border-bottom border-primary">Exercise 1.4.</h5>
+    <p>Now let's try to use the <code>DataTableComponent</code>, like the other tables in this app.</p>
+    <ol>
+      <li>Find the selector for <code>DataTableComponent</code> and insert an instance of the component below. Also note that there are three variables marked as inputs using the <code>@Input</code> decorator, being <code>data</code>, <code>properties</code> and <code>rowIndexing</code>.</li>
+      <li>
+        The component requires data to be bound to its <code>[data]</code> property. In <code>exercise-one-solution.component.ts</code>, inside <code>ExerciseOneComponent</code>, define a property as an array of some data e.g.<br/>
+        <code>
+          someSongs = [<br/>
+          &nbsp;&nbsp;&#123; title: 'If I\'m Being Honest', duration: 279, album: 'Human' &#125;,<br/>
+          &nbsp;&nbsp;&#123; title: 'She', duration: 245, album: 'Human' &#125;,<br/>
+          &nbsp;&nbsp;&#123; title: 'Guiltless', duration: 208, album: 'Guiltless' &#125;,<br/>
+          &nbsp;&nbsp;&#123; title: 'Four Tequilas Down', duration: 142, album: 'Build a Problem' &#125;,<br/>
+          ]
+        </code><br/>
+        and bind it to <code>[data]</code>.
+      </li>
+      <li>The component also requires a list of strings in <code>[properties]</code> to know what columns to display e.g.<br/>
+        <code>columns = ['title', 'duration', 'album']</code>
+      </li>
+      <li>The component also comes with an optional parameter <code>[rowIndexing]</code> which can be set to <code>true</code> to show an index column.</li>
+    </ol>
+    <p></p>
+    <!-- Your code here -->
+
+
+
+  </div>
+  <div class="mb-5">&nbsp;</div>
+
+
+
+</div>
+

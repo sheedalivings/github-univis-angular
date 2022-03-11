@@ -1,0 +1,303 @@
+<div [class.c-glow]="enableGlow">
+  <div class="border-bottom border-dark mb-4">
+    <h1 class="text-dark">Quick Guide</h1>
+  </div>
+  <p>
+    So, what are the examples and usages of Angular features in this app?
+  </p>
+  <ul>
+    <li><a href="quick-guide#components">Components</a></li>
+    <li><a href="quick-guide#binding">Binding</a></li>
+    <li><a href="quick-guide#directives">Directives</a></li>
+    <li><a href="quick-guide#services">Services</a></li>
+    <li><a href="quick-guide#pipes">Pipes</a></li>
+    <li><a href="quick-guide#modules">Modules</a></li>
+  </ul>
+
+  <div class="border-bottom border-primary my-4">
+    <h2 class="text-primary" id="components">Components</h2>
+  </div>
+
+  <div class="d-flex flex-row">
+    <div class="w-50 mr-4">
+      <p>
+        Components are the basic building blocks of Angular applications, and consist of a minimum of
+        a TypeScript (.ts) file and a HTML template (specified in the .ts or as a separate .html file).
+      </p>
+      <p>
+        Some examples of components on this page are:
+      </p>
+      <ul>
+        <li class="btn-link" (mouseenter)="toggleGlow('table', true)" (mouseout)="toggleGlow('table', false)">The table
+          to the right
+        </li>
+        <li class="btn-link" (mouseenter)="toggleGlow('coin', true)" (mouseout)="toggleGlow('coin', false)">The yellow
+          coins (each is an instance of the same component)
+        </li>
+        <li class="btn-link" (mouseenter)="toggleGlow('details', true)" (mouseout)="toggleGlow('details', false)">This
+          central page content
+        </li>
+        <li class="btn-link" (mouseenter)="toggleGlow('container', true)" (mouseout)="toggleGlow('container', false)">
+          The header with navigation <b><i>and</i></b> the footer (these are in the same component)
+        </li>
+        <li>The root component of this app, which contains all HTML elements and other components</li>
+      </ul>
+      <p>
+        Components are implemented as classes in TypeScript, and thus can do anything a usual TypeScript class can do,
+        including extending another class, implementing interfaces, and having static attributes and methods.
+      </p>
+    </div>
+    <div class="w-50 ml-4">
+      <app-data-table [data]="tableData" [properties]="tableProperties" [rowIndexing]="true"></app-data-table>
+    </div>
+  </div>
+
+  <div class="d-flex w-100 justify-content-around">
+    <app-coin *ngFor="let i of [0,1,2,3,4]" [initialType]="0"></app-coin>
+  </div>
+
+  <div class="border-bottom border-primary my-4">
+    <h2 class="text-primary" id="binding">Binding</h2>
+  </div>
+
+  <div class="d-flex flex-column">
+    <p>
+      Angular gives an easy way for the otherwise static HTML page to interact with code in a TypeScript file. Binding
+      of HTML elements to variables in TypeScript is what allows pages in Angular apps to be dynamic, and thus is an
+      important concept to have a grasp on.
+    </p>
+    <p>
+      The different bindings available can be classified as:
+    </p>
+    <h3>Source to View (.ts to .html)</h3>
+    <h5>or, Interpolation and Property Binding</h5>
+    <div class="d-flex flex-row">
+      <div class="w-75 mr-4">
+        <p>Variables in the component's .ts file can be dynamically used in the .html.</p>
+        <p>Examples of this include:</p>
+        <ul>
+          <li>Diplaying the value of the variable: <code>textBold = <b>{{ textBold }}</b></code>. This particular binding
+          uses the syntax <code [innerHTML]="'{{ ... }}'"></code> and is called <b>Interpolation</b>.</li>
+          <li>The table on the right, where the table component is bound to the data</li>
+          <code>{{table2Data | json}}</code><br/>
+          in the .ts file.
+          <li [class.font-weight-bold]="textBold">The use of the <code>font-weight-bold</code> css class in this text
+            is bound to the <code>textBold</code> variable, which can be toggled with the button below.</li>
+          <button class="btn btn-outline-primary" (click)="toggleBold()">Toggle bold</button>
+        </ul>
+      </div>
+      <div class="w-25">
+        <app-data-table [data]="table2Data" [properties]="table2Properties"></app-data-table>
+      </div>
+    </div>
+
+    <h3>View to Source (.html to .ts)</h3>
+    <p>Events captured by HTML elements can trigger functions in the component's .ts file.</p>
+    <p>Some examples are:</p>
+    <ul>
+      <li [class.font-weight-bold]="textBold">Clicking of the button below is bound to toggling the <code>textBold</code> variable.</li>
+      <button class="btn btn-outline-primary" (click)="toggleBold()">Toggle bold</button>
+      <li>Clicking the coin below triggers an action depending on the <code>type</code> attribute of the coin component.</li>
+      <app-coin [initialType]="0"></app-coin>
+      <li class="btn-link" (mouseenter)="toggleGlow('table', true)" (mouseleave)="toggleGlow('table', false)">The detection of the cursor entering/leaving this text, triggering a sequence of functions which eventually
+        triggers a class binding, causing tables to glow.</li>
+    </ul>
+
+    <h3>Two way</h3>
+    <p>Variables in the .ts can be shown in an input field in the .html, and changes to this input dynamically change
+      the variable's value in the .ts.</p>
+    <p>An example is:</p>
+    <ul>
+      <li>The below text input is bound to the <code>twoWayBindData</code> variable, and so begins with the initial
+      values specified by the .ts file. This variable can also be modified using the autofill buttons, and these changes
+      reflect immediately in the input box, and also the table bound to <code>twoWayBindDAta</code>.</li>
+      <div class="d-flex justify-content-between mb-2">
+        <input class="form-control form-check-inline" type='text' [(ngModel)]="twoWayBindData">
+        <button class="btn btn-outline-primary btn-sm w-25 mr-2" (click)="twoWayBindData = 'Some pre-determined text'">Autofill 1</button>
+        <button class="btn btn-outline-primary w-25" (click)="twoWayBindData = 'What are you expecting?'">Autofill 2</button>
+      </div>
+      <app-data-table [data]="[{row: 1, text: twoWayBindData}]" [properties]="['row', 'text']"></app-data-table>
+    </ul>
+
+  </div>
+
+  <div class="border-bottom border-primary my-4">
+    <h2 class="text-primary" id="directives">Directives</h2>
+  </div>
+
+  <div class="d-flex flex-row">
+    <div class="w-100">
+      <p>
+        Directives can be considered to be ways in which the <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction">DOM (Document Object Model)</a> can be altered. Components
+        themselves can be considered directives, but here we describe the other two types of directives:
+        <b>structural</b> and <b>attribute</b>.
+      </p>
+      <p>
+        <b>Structural directives</b> alter the occurrence of elements in the DOM. Some examples are:
+      </p>
+      <ul>
+        <li><code>*ngIf</code></li>
+        This allows elements to be added/removed from the DOM according to a boolean value. For example, The table
+        below can be added/removed using this button:
+        <br/>
+        <div class="d-flex flex-column align-items-center">
+          <div>
+            <button class="btn btn-sm btn-outline-primary my-3" (click)="showTable = !showTable">Toggle Table</button>
+          </div>
+          <div>
+            <app-data-table *ngIf="showTable" [data]="directivesTableData" [properties]="directivesTableProperties"></app-data-table>
+          </div>
+        </div>
+        <li class="mt-4"><code>*ngFor</code></li>
+        This allows iteration of DOM elements according to an iterable. For example, the number of coins below is
+        determined by the value of <code>coinCount</code>, which is two-way-bound to this input:
+        <br/>
+        <input class="form-control form-control-sm w-25" type="number" min="0" max="12" step="1" [(ngModel)]="coinCount">
+        <div class="d-flex flex-row justify-content-between my-3">
+          <app-coin [initialType]="0" *ngFor="let i of range(coinCount)"></app-coin>
+        </div>
+        Another great example of <code>*ngFor</code> is the
+        <span class="btn-link"
+              (mouseenter)="toggleGlow('table', true)"
+              (mouseleave)="toggleGlow('table', false)">
+        implementation of <code>DataTableComponent</code>, which iterates over an array of objects, then over properties
+        of objects to populate the table.</span>
+        <li class="mt-4"><code>[ngSwitch]</code>, <code>*ngSwitchCase</code>, <code>*ngSwitchDefault</code></li>
+        This behaves like similarly to the <code>*ngIf</code> structural directive, except with the usual <code>switch</code>
+        functionality. Depending on the number of coins above, different DOM elements are rendered below.
+        <div class="d-flex w-100 justify-content-center my-3" [ngSwitch]="coinCount">
+          <app-coin *ngSwitchCase="0" [initialType]="4"></app-coin>
+          <button *ngSwitchCase="2" class="btn btn-outline-secondary" [routerLink]="'/home'">Back to Home</button>
+          <span *ngSwitchCase="12" class="text-danger font-weight-bold">Well isn't someone greedy</span>
+          <span *ngSwitchDefault class="btn btn-outline-info">Default case ( ͡° ͜ʖ ͡°)</span>
+        </div>
+        Another great example of <code>[ngSwitch]</code> is the implementation of <span>CoinComponent</span>.
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-bottom border-primary my-4">
+    <h2 class="text-primary" id="services">Services</h2>
+  </div>
+
+  <div class="d-flex flex-row">
+    <div class="w-100">
+      <p>
+        Services less concrete than other features covered thus far, as they do not directly affect the HTML template.
+        Instead, they are a flexible way of modularising code and also communicating between components and even
+        other services.
+      </p>
+      <p>
+        Two key examples of services are used in this app.
+      </p>
+      <ul>
+        <li>
+          <code>CoinService</code> is used to track the total score accumulated within the current instance of the app.
+          The instance of the service is 'provided by' the root component, so as long as the root component is active,
+          the service is also active. This also means that navigating within the app does not destroy the service.
+        </li>
+        <li>
+          <code>GlowService</code> is used to communicate between relevant components - receiving calls to activate or
+          deactivate the 'glow' styling for certain components, and passing these calls onto the components.
+          Importantly, this service provides a convenient layer of abstraction between components triggering/affected
+          by the glow styling - i.e. triggers do not need to worry about how components implement glowing, and affected
+          components don't need to worry about how triggers happen exactly. Again, this service is also provided by the
+          root component.
+        </li>
+      </ul>
+      <p>
+        Another important example is <code>HttpClient</code>, which comes with the built-in <code>HttpModule</code>
+        module. This service is used to perform HTTP requests.
+      </p>
+      <p>
+        Services are an example of the broader concept of <b>Dependency Injection</b> (DI), so called because services
+        (and other examples of DI) can be 'injected' into components, as long as they are provided by a higher-up
+        component. This injection is done via the following syntax in a component's constructor:
+      </p>
+      <code>
+        constructor(<b>private: serviceOne: ServiceOne, protected: serviceTwo: ServiceTwo</b>) {{'{}'}}
+      </code>
+    </div>
+  </div>
+
+  <div class="border-bottom border-primary my-4">
+    <h2 class="text-primary" id="pipes">Pipes</h2>
+  </div>
+
+  <div class="d-flex flex-row">
+    <div class="w-100">
+      <p>
+        Angular pipes are used to transform objects, most often to be displayed on a page in a convenient way. The table below shows the usage of some pipes.
+      </p>
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr class="text-light bg-secondary">
+          <th>Input</th>
+          <th>Pipe</th>
+          <th>Output</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>{{pipeExampleInputs[0]}}</td>
+          <td><code>uppercase</code></td>
+          <td>{{pipeExampleInputs[0] | uppercase}}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>startCase</code> (custom pipe)</td>
+          <td>{{pipeExampleInputs[0] | startCase}}</td>
+        </tr>
+        <tr>
+          <td>{{pipeExampleInputs[1]}}</td>
+          <td><code>json</code></td>
+          <td>{{pipeExampleInputs[1] | json}}</td>
+        </tr>
+        <tr>
+          <td>JS Date object: {{pipeExampleInputs[2]}}</td>
+          <td><code>date</code></td>
+          <td>{{pipeExampleInputs[2] | date}}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>date : 'short'</code></td>
+          <td>{{pipeExampleInputs[2] | date : 'short'}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="border-bottom border-primary my-4">
+    <h2 class="text-primary" id="modules">Modules</h2>
+  </div>
+
+  <div class="d-flex flex-row">
+    <div class="w-100">
+      <p>
+        Modules are another more abstract concept, and are a way of organising Angular objects (e.g. components,
+        custom directives, pipes, services) into groups. This can be useful in larger projects for organising
+        code for easier development, but also to help Angular only load components etc. when they are required on the
+        page.
+      </p>
+      <p>
+        Angular projects have a root module (<code>app.module.ts</code>). This root module 'contains' other modules
+        by importing them, and these imported modules can import modules themselves, ad infinitum.
+      </p>
+      <p>
+        This particular app is relatively small, and so modules are used for organisation, and not so much for any
+        functional benefits.
+      </p>
+      <p>
+        <b>Routing Modules</b> are a special case, as they import Angular's <code>RouterModule</code> allowing us to
+        load components and modules based on the current route. In this app, <code>app-routing.module</code> specifies
+        that <code>/quick-guide</code> loads the <code>QuickGuideComponent</code>, or that <code>/home</code> loads
+        <code>HomeComponent</code> and so on.
+      </p>
+    </div>
+  </div>
+
+  <!-- For spacing -->
+  <div class="my-5">&nbsp;</div>
+</div>
+
